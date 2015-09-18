@@ -11,9 +11,16 @@ checkyrsai = Extension('_checkyrsai',
                     extra_link_args = ['-std=c++11']
                     )
 
+gamerunner = Extension('_gamerunner',
+                    sources = ['gamerunner_wrap.cxx','../checkyrs/checkyrs/gamerunner.cpp'],
+                    include_dirs = ['/usr/local/include','../checkyrs/checkyrs'],
+                    libraries = ['Checkyrs'],
+                    library_dirs = ['../checkyrs/Build/Products/Release/'],
+                    extra_link_args = ['-std=c++11']
+                    )
 
 
-setup (name = 'checkyrsai',
+setup (name = 'checkyrs',
        version = '1.0',
-       description = 'checkyrsAI',
-       ext_modules = [checkyrsai])
+       description = 'checkyrs',
+       ext_modules = [checkyrsai,gamerunner])
