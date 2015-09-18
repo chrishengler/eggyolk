@@ -4,9 +4,9 @@ import os
 os.environ["CC"] = "g++"
 
 checkyrsai = Extension('_checkyrsai',
-                    sources = ['checkyrsai_wrap.cxx','ai.cpp'],
+                    sources = ['checkyrsai_wrap.cxx','../checkyrs/checkyrs/ai.cpp'],
                     include_dirs = ['/usr/local/include','../checkyrs/checkyrs'],
-                    libraries = ['CheckyrsAI','CheckyrsBase'],
+                    libraries = ['Checkyrs'],
                     library_dirs = ['../checkyrs/Build/Products/Release/'],
                     extra_link_args = ['-std=c++11']
                     )
