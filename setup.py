@@ -8,7 +8,7 @@ checkyrsai = Extension('_checkyrsai',
                     include_dirs = ['/usr/local/include','../checkyrs/checkyrs'],
                     libraries = ['Checkyrs','boost_serialization'],
                     library_dirs = ['../checkyrs/Build/Products/Release/','/usr/local/lib'],
-                    extra_compile_args = ['-std=c++11']
+                    extra_compile_args = ['-stdlib=libc++','-mmacosx-version-min=10.7']
                     )
 
 gamerunner = Extension('_gamerunner',
@@ -16,7 +16,7 @@ gamerunner = Extension('_gamerunner',
                     include_dirs = ['/usr/local/include','../checkyrs/checkyrs'],
                     libraries = ['Checkyrs','boost_serialization'],
                     library_dirs = ['../checkyrs/Build/Products/Release/','/usr/local/lib'],
-                    extra_compile_args = ['-std=c++11']
+                    extra_compile_args = ['-stdlib=libc++','-mmacosx-version-min=10.7']
                     )
 
 
