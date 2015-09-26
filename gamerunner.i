@@ -8,9 +8,10 @@
 
 class Gamerunner{
 public:
-  void initialise(const CheckyrsAI &ai1, const CheckyrsAI &ai2);
+  void initialise(CheckyrsAI &ai1,CheckyrsAI &ai2);
   bool continueGame();
   bool gameOver() const;
   bool isDraw() const;
   int getWinner() const;
+  int getPiecesPlayer(const int player=1) const;
 };
