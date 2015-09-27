@@ -1,5 +1,9 @@
+import random
+
 import checkyrsai
 import gamerunner
+
+createdAI=1 #global vartracking created AIs, hack until internal IDs in checkyrs
 
 def getScore(ai):
   return ai[1]
@@ -44,11 +48,31 @@ def select(table):
             return entry
             break
 
-firstGen = []
+def newGen(table):
+    gen = []
+    gen.append( [table[0][0],0,table[0][2] ] )
+    gen.append( [table[1][0],0,table[0][2] ] )
+    for i in range(2,5):
+        gen.append( [select(table)[0].breed(select(table)[0]) , 0, createdAI] )
+        createdAI+=1
+    for i in range(5,6):
+        ai = checkyrsai.CheckyrsAI()
+        ai.Initialise( True )
+        gen.append( [ai , 0, createdAI] )
+        createdAI+=1
+    return gen
 
-for i in range(0,3):
+currentGen = []
+numGens = 5
+
+for i in range(0,6):
     ai = checkyrsai.CheckyrsAI()
     ai.Initialise( True )
-    firstGen.append( [ai,0,i] )
+    currentGen.append( [ai,0,i] )
 
-printTable(league(firstGen))
+while numGens:
+    numGens-=1
+    currentGen = league(currentGen)
+    printTable(currentGen)
+    currentGen[0][0].save('/tmp/AI_'+str(5-numGens))
+    currentGen = newGen(currentGen)
