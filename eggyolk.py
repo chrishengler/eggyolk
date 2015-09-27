@@ -49,6 +49,7 @@ def select(table):
             break
 
 def newGen(table):
+    global createdAI
     gen = []
     gen.append( [table[0][0],0,table[0][2] ] )
     gen.append( [table[1][0],0,table[0][2] ] )
@@ -73,6 +74,8 @@ for i in range(0,6):
 while numGens:
     numGens-=1
     currentGen = league(currentGen)
+    print('table: (' +str(numGens) +' gens remaining)' )
     printTable(currentGen)
-    currentGen[0][0].save('/tmp/AI_'+str(5-numGens))
+    currentGen[0][0].save('/tmp/round'+(5-numGens)+'_1st.cai')
+    currentGen[1][0].save('/tmp/round'+(5-numGens)+'_2nd.cai')
     currentGen = newGen(currentGen)
