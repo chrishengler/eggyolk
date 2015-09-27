@@ -34,6 +34,16 @@ def printTable(table):
     for entry in table:
         print(str(entry[2]) + ': ' + str(entry[1]))
 
+def select(table):
+    total = sum(entry[1] for entry in table)
+    r = random.uniform(0,total)
+    x=0
+    for entry in table:
+        x+=entry[1]
+        if r<=x:
+            return entry
+            break
+
 firstGen = []
 
 for i in range(0,3):
