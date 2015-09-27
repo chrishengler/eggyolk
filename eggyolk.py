@@ -76,6 +76,6 @@ while numGens:
     currentGen = league(currentGen)
     print('table: (' +str(numGens) +' gens remaining)' )
     printTable(currentGen)
-    currentGen[0][0].save('/tmp/round'+(5-numGens)+'_1st.cai')
-    currentGen[1][0].save('/tmp/round'+(5-numGens)+'_2nd.cai')
+    currentGen[0][0].save('/tmp/round'+str(5-numGens)+'_1st.cai')
+    currentGen[1][0].save('/tmp/round'+str(5-numGens)+'_2nd.cai')
     currentGen = newGen(currentGen)
