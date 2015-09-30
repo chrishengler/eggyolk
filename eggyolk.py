@@ -29,8 +29,7 @@ def league(ailist):
             else:
                 p2[1]+=20
 
-    ailist.sort(key=getScore,reverse=True)
-    return ailist
+    return sorted(ailist,key=getScore,reverse=True)
 
 def printTable(table):
     for entry in table:
@@ -49,8 +48,9 @@ def select(table):
 def newGen(table):
     global createdAI
     gen = []
-    gen.append( [table[0][0],0,table[0][2] ] )
-    gen.append( [table[1][0],0,table[1][2] ] )
+    winner, runnerup = table[0], table[1]
+    gen.append( winner[0],0,winner[2] ] )
+    gen.append( runnerup[0],0,runnerup[2] ] )
     for i in range(2,5):
         gen.append( [select(table)[0].breed(select(table)[0]) , 0, createdAI] )
         createdAI+=1
@@ -64,7 +64,7 @@ def newGen(table):
 createdAI=1 #global vartracking created AIs, hack until internal IDs in checkyrs
 
 currentGen = []
-numGens = 5
+numGens = totalGens = 10
 
 for i in range(0,5):
     ai = checkyrsai.CheckyrsAI()
@@ -77,6 +77,6 @@ while numGens:
     currentGen = league(currentGen)
     print('table: (' +str(numGens) +' gens remaining)' )
     printTable(currentGen)
-    currentGen[0][0].save('/tmp/round'+str(5-numGens)+'_1st.cai')
-    currentGen[1][0].save('/tmp/round'+str(5-numGens)+'_2nd.cai')
+    currentGen[0][0].save('/tmp/round'+str(totalGens-numGens)+'_1st.cai')
+    currentGen[1][0].save('/tmp/round'+str(totalGens-numGens)+'_2nd.cai')
     currentGen = newGen(currentGen)
