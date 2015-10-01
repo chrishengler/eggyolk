@@ -1,3 +1,4 @@
+import sys
 import random
 
 import checkyrsai
@@ -49,8 +50,8 @@ def newGen(table):
     global createdAI
     gen = []
     winner, runnerup = table[0], table[1]
-    gen.append( winner[0],0,winner[2] ] )
-    gen.append( runnerup[0],0,runnerup[2] ] )
+    gen.append( [ winner[0],0,winner[2] ] )
+    gen.append( [ runnerup[0],0,runnerup[2] ] )
     for i in range(2,5):
         gen.append( [select(table)[0].breed(select(table)[0]) , 0, createdAI] )
         createdAI+=1
@@ -66,11 +67,19 @@ createdAI=1 #global vartracking created AIs, hack until internal IDs in checkyrs
 currentGen = []
 numGens = totalGens = 10
 
-for i in range(0,5):
+for i in sys.argv[1:]:
+    print('loading AI from file: '+i)
     ai = checkyrsai.CheckyrsAI()
-    ai.initialise( True )
+    ai.load(i)
     currentGen.append( [ai,0,createdAI] )
     createdAI+=1
+
+if len(currentGen)<5:
+    for i in range(len(currentGen),5):
+        ai = checkyrsai.CheckyrsAI()
+        ai.initialise( True )
+        currentGen.append( [ai,0,createdAI] )
+        createdAI+=1
 
 while numGens:
     numGens-=1
