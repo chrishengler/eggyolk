@@ -56,7 +56,7 @@ def newGen(table):
         createdAI+=1
     for i in range(5,7):
         ai = checkyrsai.CheckyrsAI()
-        ai.Initialise( True )
+        ai.initialise( True )
         gen.append( [ai , 0, createdAI] )
         createdAI+=1
     return gen
@@ -68,7 +68,7 @@ numGens = totalGens = 10
 
 for i in range(0,5):
     ai = checkyrsai.CheckyrsAI()
-    ai.Initialise( True )
+    ai.initialise( True )
     currentGen.append( [ai,0,createdAI] )
     createdAI+=1
 
