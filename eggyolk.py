@@ -88,4 +88,6 @@ while numGens:
     printTable(currentGen)
     currentGen[0][0].save('/tmp/round'+str(totalGens-numGens)+'_1st.cai')
     currentGen[1][0].save('/tmp/round'+str(totalGens-numGens)+'_2nd.cai')
-    currentGen = newGen(currentGen)
+    if numGens: 
+        currentGen = newGen(currentGen)
+
