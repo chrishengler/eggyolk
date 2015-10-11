@@ -67,12 +67,13 @@ createdAI=1 #global vartracking created AIs, hack until internal IDs in checkyrs
 currentGen = []
 numGens = totalGens = 10
 
-for i in sys.argv[1:]:
-    print('loading AI from file: '+i)
-    ai = checkyrsai.CheckyrsAI()
-    ai.load(i)
-    currentGen.append( [ai,0,createdAI] )
-    createdAI+=1
+if len(sys.argv)>1:
+    for i in sys.argv[1:]:
+        print('loading AI from file: '+i)
+        ai = checkyrsai.CheckyrsAI()
+        ai.load(i)
+        currentGen.append( [ai,0,createdAI] )
+        createdAI+=1
 
 if len(currentGen)<5:
     for i in range(len(currentGen),5):
